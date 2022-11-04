@@ -1,17 +1,49 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import logo from '../../assets/images/logo.png';
+import {screens} from '../../data/screens';
 
-const Header = () => {
+const Header = ({activeTab, setActiveTab}) => {
+  const navigation = useNavigation();
   return (
     <View style={[styles.headercont]}>
-      <Text>this is desktopHeader</Text>
+      <Image source={logo} style={[styles.headerlogo]} />
+      {screens.map(screen => (
+        <TouchableOpacity
+          style={styles.tabs(activeTab === screen.name)}
+          onPress={() => {
+            setActiveTab(screen.name);
+            navigation.navigate(activeTab);
+          }}>
+          <Image source={screen.img} style={[styles.tabimg]} />
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headercont: {
-    backgroundColor: '#00174A',
+    backgroundColor: '#002169',
+    width: 66,
+    height: '100vh',
+    position: 'fixed',
+    zIndex: 10000,
+  },
+  tabs: isActive => ({
+    padding: 20,
+    opacity: isActive ? 1 : 0.2,
+    backgroundColor: isActive && 'rgba(0, 0, 0, 0.15)',
+  }),
+  headerlogo: {
+    margin: 16,
+    width: 38,
+    height: 38,
+  },
+  tabimg: {
+    width: 24,
+    height: 23,
   },
 });
 

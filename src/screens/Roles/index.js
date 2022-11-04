@@ -4,6 +4,7 @@ import DesktopView from './DesktopView';
 import MobileView from './MobileView';
 import TabDrawer from '../../components/common/TabDrawer';
 import {screens} from '../../data/screens';
+import {breakpoint} from '../../data/breakpoint';
 
 const Roles = ({activeTab, setActiveTab}) => {
   const windowWidth = useWindowDimensions().width;
@@ -11,8 +12,8 @@ const Roles = ({activeTab, setActiveTab}) => {
   return (
     <>
       <SafeAreaView>
-        {windowWidth >= 520 ? (
-          <DesktopView />
+        {windowWidth >= breakpoint ? (
+          <DesktopView activeTab={activeTab} setActiveTab={setActiveTab} />
         ) : showDrawer ? (
           <TabDrawer
             screens={screens}

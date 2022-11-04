@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Header from '../header/MobileView';
 import theme from '../../assets/themes/themes';
 import RowBox from './RowBox';
@@ -38,7 +45,7 @@ const TabDrawer = ({
 const styles = StyleSheet.create({
   drawerCont: {
     backgroundColor: theme.headerTabbackground,
-    height: '103%',
+    height: Platform.OS === 'web' ? '100vh' : '103%',
   },
   drawerbody: isActiveTab => ({
     opacity: isActiveTab ? 1 : 0.3,
