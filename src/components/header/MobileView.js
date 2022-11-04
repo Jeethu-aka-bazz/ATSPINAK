@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import logo from '../../assets/images/logo.png';
 import RowBox from '../common/RowBox';
@@ -6,22 +6,29 @@ import hamburgermenu from '../../assets/images/hamburgermenu.png';
 import theme from '../../assets/themes/themes';
 import font from '../../assets/fonts/font';
 import notification from '../../assets/images/notificationMobile.png';
+import close from '../../assets/images/close.png';
 
-const Header = () => {
-  const [open, setOpen] = useState(false);
+const Header = ({showDrawer, setShowDrawer}) => {
   const closeDrawer = () => {
-    setOpen(!open);
+    setShowDrawer(!showDrawer);
   };
   return (
     <RowBox style={[styles.headercont]}>
       <TouchableOpacity style={[styles.hambuttonstyle]} onPress={closeDrawer}>
-        <Image source={hamburgermenu} style={[styles.hamburgermenuimg]} />
+        <Image
+          source={showDrawer ? close : hamburgermenu}
+          style={[styles.hamburgermenuimg]}
+        />
       </TouchableOpacity>
       <RowBox style={[styles.logo]}>
         <Image source={logo} style={[styles.logoimg]} />
         <Text style={[styles.headertext]}>Pinak ATS</Text>
       </RowBox>
-      <Image source={notification} style={[styles.notificationimg]} />
+      {showDrawer ? (
+        <View style={[styles.notificationimg]} />
+      ) : (
+        <Image source={notification} style={[styles.notificationimg]} />
+      )}
     </RowBox>
   );
 };

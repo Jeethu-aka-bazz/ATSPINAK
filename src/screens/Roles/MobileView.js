@@ -2,11 +2,11 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import Header from '../../components/header/MobileView';
 
-const MobileView = () => {
+const MobileView = ({showDrawer, setShowDrawer}) => {
   return (
     <View>
-      <Header />
-      <Text>This is Home</Text>
+      <Header showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
+      <Text>This is Roles</Text>
     </View>
   );
 };
