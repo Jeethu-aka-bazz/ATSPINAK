@@ -25,17 +25,29 @@ const font = {
     fontWeight: '400',
     lineHeight: 16,
   },
-  rolename: {
-    ...fontFamily,
-    fontSize: 18,
-    fontWeight: '500',
-    lineHeight: 25,
-  },
   department: {
     ...fontFamily,
     fontSize: 12,
     fontWeight: '400',
     lineHeight: 16,
+  },
+  heading2: {
+    ...fontFamily,
+    fontSize: 22,
+    fontWeight: '500',
+    lineHeight: 33,
+  },
+  fontstyle3: {
+    ...fontFamily,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 19,
+  },
+  fontstyle4: {
+    ...fontFamily,
+    fontSize: 16,
+    fontWeight: '400',
+    lineHeight: 22,
   },
 };
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import {Image, StyleSheet, Text, useWindowDimensions, View} from 'react-native';
+import done from '../../assets/images/done.png';
 import department from '../../assets/images/department.png';
 import font from '../../assets/fonts/font';
 import theme from '../../assets/themes/themes';
 import RowBox from '../common/RowBox';
+import {mobilebreakpoint} from '../../data/breakpoint';
 
 const Role = ({role}) => {
   const windowWidth = useWindowDimensions().width;
@@ -27,7 +29,8 @@ const Role = ({role}) => {
             ]}>{`Priority - ${role.priority}`}</Text>
         </View>
         <RoleIcon />
-        <Text style={[styles.centeralign, {...font.rolename}, styles.rolename]}>
+        <Text
+          style={[styles.centeralign, {...font.drawrttab}, styles.drawrttab]}>
           {role.name}
         </Text>
         <Text style={[styles.centeralign, styles.department]}>
@@ -39,8 +42,36 @@ const Role = ({role}) => {
           <VerticalLine />
           <Dates title="Closed Date" date={role.closedDate} />
         </RowBox>
+        <Progress progress={role.progress} />
       </View>
     </>
+  );
+};
+
+const Progress = ({progress}) => {
+  return (
+    <>
+      <RowBox style={[styles.progresscont]}>
+        <Progressdone showImg={progress.publishedJD} />
+        <Progressdone showImg={progress.sourcing} />
+        <Progressdone showImg={progress.shortlisting} />
+        <Progressdone showImg={progress.hiring} />
+      </RowBox>
+      <RowBox style={[styles.progressdes]}>
+        <Text>Publish JD</Text>
+        <Text>Sourcing</Text>
+        <Text>Shorlisting</Text>
+        <Text>Hiring</Text>
+      </RowBox>
+    </>
+  );
+};
+
+const Progressdone = ({showImg}) => {
+  return (
+    <View style={[styles.progressdonecont(showImg)]}>
+      <Image source={done} style={[styles.progressdoneimg]} />
+    </View>
   );
 };
 
@@ -84,7 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginHorizontal: 6,
     borderRadius: 4,
-    width: windowWidth <= 720 ? '100%' : 330,
+    width: windowWidth <= mobilebreakpoint ? '100%' : 330,
   }),
   iconbackground: {
     backgroundColor: theme.iconbackground,
@@ -109,9 +140,9 @@ const styles = StyleSheet.create({
   prioritytext: color => ({
     color: color,
   }),
-  rolename: {
+  drawrttab: {
     marginTop: 15,
-    color: theme.rolename,
+    color: theme.drawrttab,
   },
   department: {
     color: '#202020',
@@ -142,6 +173,38 @@ const styles = StyleSheet.create({
   datescont: {
     justifyContent: 'space-between',
     marginHorizontal: 55,
+  },
+  progressdonecont: showImg => ({
+    backgroundColor: showImg
+      ? theme.progressdonebackground
+      : theme.progressnotdonebackground,
+    borderWidth: !showImg && 1,
+    borderColor: !showImg && theme.progressnotdoneborder,
+    width: 16,
+    height: 16,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }),
+  progressdoneimg: {
+    width: 13,
+    height: 7,
+  },
+  progresscont: {
+    justifyContent: 'space-between',
+    backgroundColor: theme.progressindicatorbackground,
+    marginTop: 23,
+    marginHorizontal: 12,
+    paddingHorizontal: 20,
+    borderTopColor: theme.progressindicatorborder,
+    borderTopWidth: 1,
+    borderBottomColor: theme.progressindicatorborder,
+    borderBottomWidth: 1,
+  },
+  progressdes: {
+    justifyContent: 'space-between',
+    marginHorizontal: 12,
+    marginVertical: 4,
   },
 });
 

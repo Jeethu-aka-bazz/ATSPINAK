@@ -1,1 +1,2 @@
-export const breakpoint = 783;
+export const breakpoint = 820;
+export const mobilebreakpoint = 760;

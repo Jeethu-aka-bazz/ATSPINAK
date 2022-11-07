@@ -7,9 +7,7 @@ const MobileView = ({showDrawer, setShowDrawer}) => {
   return (
     <View>
       <Header showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
-      <ScrollView>
-        <RolesBody />
-      </ScrollView>
+      <RolesBody />
     </View>
   );
 };
