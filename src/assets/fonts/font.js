@@ -17,7 +17,6 @@ const font = {
     fontSize: 32,
     fontWeight: '500',
     lineHeight: 44,
-    letterSpacing: 0,
   },
   rolesPriority: {
     ...fontFamily,
@@ -48,6 +47,18 @@ const font = {
     fontSize: 16,
     fontWeight: '400',
     lineHeight: 22,
+  },
+  fontstyle5: {
+    ...fontFamily,
+    fontSize: 24,
+    fontWeight: '900',
+    lineHeight: 33,
+  },
+  fontstyle6: {
+    ...fontFamily,
+    fontSize: 20,
+    fontWeight: '900',
+    lineHeight: 27,
   },
 };
 

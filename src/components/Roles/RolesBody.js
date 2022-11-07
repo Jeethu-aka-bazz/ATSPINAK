@@ -1,34 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useWindowDimensions,
   View,
 } from 'react-native';
 import theme from '../../assets/themes/themes';
 import font from '../../assets/fonts/font';
-import Buttons from '../common/Buttons';
 import Role from './Role';
 import store from '../../store/store';
-import notification from '../../assets/images/notificationWeb.png';
 import {breakpoint} from '../../data/breakpoint';
 import RowBox from '../common/RowBox';
 import dropdown from '../../assets/images/dropdown.png';
 import addrole1 from '../../assets/images/role.png';
 import addrole2 from '../../assets/images/addrole2.png';
+import PageBodyHeader from '../common/PageBodyHeader';
+import Buttons from '../common/Buttons';
+import Addrole from './AddRole';
 
-const RolesBody = () => {
+const RolesBody = ({
+  rolename,
+  setRolename,
+  showAddRole,
+  setShowAddRole,
+  setNoofreq,
+  noofreq,
+}) => {
   const roles = store.getState().roles;
   const windowWidth = useWindowDimensions().width;
   return (
     <>
       <ScrollView style={[styles.scrollview]}>
         <View style={[styles.bodycont]}>
-          <Text style={[styles.header]}>Roles</Text>
-          {windowWidth >= breakpoint && <CreateNewWeb />}
+          <PageBodyHeader windowWidth={windowWidth} />
           <RowBox>
             <Buttons
               title="Open roles - 32"
@@ -45,7 +53,17 @@ const RolesBody = () => {
           </View>
         </View>
       </ScrollView>
-      {!(windowWidth >= breakpoint) && <CreateNewMobile />}
+      {!(windowWidth >= breakpoint) && (
+        <CreateNewMobile setShowAddRole={setShowAddRole} />
+      )}
+      <Addrole
+        rolename={rolename}
+        setRolename={setRolename}
+        showAddRole={showAddRole}
+        setShowAddRole={setShowAddRole}
+        noofreq={noofreq}
+        setNoofreq={setNoofreq}
+      />
     </>
   );
 };
@@ -55,9 +73,9 @@ const OpenPosition = () => {
     <RowBox style={[styles.header2cont]}>
       <Text style={[styles.header2]}>Open positions (24)</Text>
       <RowBox style={[styles.sortcont]}>
-        <Text style={[{...font.fontstyle3, color: '#252525'}]}>Sort by</Text>
+        <Text style={[styles.sorttext]}>Sort by</Text>
         <RowBox style={[styles.sortcont, styles.sortbox]}>
-          <Text style={[{...font.fontstyle3, color: '#252525'}]}>All</Text>
+          <Text style={[styles.sorttext]}>All</Text>
           <Image source={dropdown} style={[styles.dropdownimg]} />
         </RowBox>
       </RowBox>
@@ -65,33 +83,20 @@ const OpenPosition = () => {
   );
 };
 
-const CreateNewWeb = () => {
+const CreateNewMobile = ({setShowAddRole}) => {
   return (
-    <RowBox style={[styles.createNewWebcont]}>
-      <View style={[styles.createNewWebbutton]}>
-        <Text style={[styles.createNewWebbuttontext]}>+ Create new role</Text>
-      </View>
-      <View style={[styles.createNewWebimgbackground]}>
-        <Image source={notification} style={[styles.createNewWebimg]} />
-      </View>
-    </RowBox>
-  );
-};
-
-const CreateNewMobile = () => {
-  return (
-    <View style={[styles.CreateNewMobile]}>
+    <TouchableOpacity
+      style={[styles.CreateNewMobile]}
+      onPress={() => {
+        setShowAddRole(true);
+      }}>
       <Image source={addrole1} style={[styles.createNewMobileimg1]} />
       <Image source={addrole2} style={[styles.createNewMobileimg2]} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    ...font.bodyheading,
-    color: theme.header,
-  },
   bodycont: {
     backgroundColor: theme.bodyBackground,
     paddingLeft: '4%',
@@ -113,32 +118,7 @@ const styles = StyleSheet.create({
     height: Platform.OS === 'web' ? '100vh' : null,
     backgroundColor: theme.bodyBackground,
   },
-  createNewWebbutton: {
-    backgroundColor: '#002169',
-    paddingHorizontal: 25,
-    paddingVertical: 10,
-    borderRadius: 20,
-    alignItems: 'flex-end',
-  },
-  createNewWebbuttontext: {
-    ...font.fontstyle4,
-    color: '#FFF',
-  },
-  createNewWebimgbackground: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#002169',
-    borderWidth: 1,
-    borderRadius: 20,
 
-    marginLeft: 16,
-  },
-  createNewWebimg: {
-    width: 20,
-    height: 24,
-  },
   createNewMobileimg1: {
     width: 24,
     height: 23,
@@ -181,10 +161,10 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     marginLeft: 15,
   },
-  createNewWebcont: {
-    position: 'absolute',
-    top: '2%',
-    right: '3%',
+
+  sorttext: {
+    ...font.fontstyle3,
+    color: '#252525',
   },
 });
 

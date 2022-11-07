@@ -17,6 +17,7 @@ const theme = {
   progressnotdonebackground: '#FFF',
   progressnotdoneborder: '#F6F6F6',
   addrolebackground: '#FF4375',
+  createroleheader: '#3384C3',
 };
 
 export default theme;
