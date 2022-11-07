@@ -178,8 +178,8 @@ const styles = StyleSheet.create({
     backgroundColor: showImg
       ? theme.progressdonebackground
       : theme.progressnotdonebackground,
-    borderWidth: !showImg && 1,
-    borderColor: !showImg && theme.progressnotdoneborder,
+    borderWidth: !showImg ? 1 : 0,
+    borderColor: !showImg ? theme.progressnotdoneborder : null,
     width: 16,
     height: 16,
     borderRadius: 10,

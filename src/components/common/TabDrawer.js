@@ -24,8 +24,9 @@ const TabDrawer = ({
   return (
     <View style={[styles.drawerCont]}>
       <Header showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
-      {screens.map(screen => (
+      {screens.map((screen, i) => (
         <TouchableOpacity
+          key={i}
           style={[styles.drawerbody(activeTab === screen.name)]}
           onPress={() => {
             setActiveTab(screen.name);

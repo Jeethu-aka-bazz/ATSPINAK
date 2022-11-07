@@ -9,8 +9,9 @@ const Header = ({activeTab, setActiveTab}) => {
   return (
     <View style={[styles.headercont]}>
       <Image source={logo} style={[styles.headerlogo]} />
-      {screens.map(screen => (
+      {screens.map((screen, i) => (
         <TouchableOpacity
+          key={i}
           style={styles.tabs(activeTab === screen.name)}
           onPress={() => {
             setActiveTab(screen.name);

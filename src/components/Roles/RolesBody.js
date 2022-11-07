@@ -17,8 +17,8 @@ import notification from '../../assets/images/notificationWeb.png';
 import {breakpoint} from '../../data/breakpoint';
 import RowBox from '../common/RowBox';
 import dropdown from '../../assets/images/dropdown.png';
-import role from '../../assets/images/role.png';
-import addrole from '../../assets/images/addrole2.png';
+import addrole1 from '../../assets/images/role.png';
+import addrole2 from '../../assets/images/addrole2.png';
 
 const RolesBody = () => {
   const roles = store.getState().roles;
@@ -39,8 +39,8 @@ const RolesBody = () => {
           </RowBox>
           {windowWidth >= breakpoint && <OpenPosition />}
           <View style={[styles.rolecont]}>
-            {roles.map(role => (
-              <Role role={role} />
+            {roles.map((role, i) => (
+              <Role key={i} role={role} />
             ))}
           </View>
         </View>
@@ -81,8 +81,8 @@ const CreateNewWeb = () => {
 const CreateNewMobile = () => {
   return (
     <View style={[styles.CreateNewMobile]}>
-      <Image source={role} style={[styles.createNewMobileimg1]} />
-      <Image source={addrole} style={[styles.createNewMobileimg2]} />
+      <Image source={addrole1} style={[styles.createNewMobileimg1]} />
+      <Image source={addrole2} style={[styles.createNewMobileimg2]} />
     </View>
   );
 };
