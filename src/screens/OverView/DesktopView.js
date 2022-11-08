@@ -1,22 +1,16 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import DesktopContainer from '../../components/common/DesktopContainer';
 import Header from '../../components/header/DesktopView';
-import RolesBody from '../../components/Roles/RolesBody';
 
-const DesktopView = ({
-  activeTab,
-  setActiveTab,
-  showAddRole,
-  setShowAddRole,
-}) => {
+const DesktopView = ({activeTab, setActiveTab}) => {
   return (
-    <View>
+    <>
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       <DesktopContainer>
-        <RolesBody showAddRole={showAddRole} setShowAddRole={setShowAddRole} />
+        <Text>this is OverView</Text>
       </DesktopContainer>
-    </View>
+    </>
   );
 };
 

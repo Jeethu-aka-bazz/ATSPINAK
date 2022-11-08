@@ -9,11 +9,17 @@ import {breakpoint} from '../../data/breakpoint';
 const Roles = ({activeTab, setActiveTab}) => {
   const windowWidth = useWindowDimensions().width;
   const [showDrawer, setShowDrawer] = useState(false);
+  const [showAddRole, setShowAddRole] = useState(false);
   return (
     <>
       <SafeAreaView>
         {windowWidth >= breakpoint ? (
-          <DesktopView activeTab={activeTab} setActiveTab={setActiveTab} />
+          <DesktopView
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            setShowAddRole={setShowAddRole}
+            showAddRole={showAddRole}
+          />
         ) : showDrawer ? (
           <TabDrawer
             screens={screens}
@@ -23,7 +29,12 @@ const Roles = ({activeTab, setActiveTab}) => {
             setActiveTab={setActiveTab}
           />
         ) : (
-          <MobileView showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
+          <MobileView
+            showDrawer={showDrawer}
+            setShowDrawer={setShowDrawer}
+            showAddRole={showAddRole}
+            setShowAddRole={setShowAddRole}
+          />
         )}
       </SafeAreaView>
     </>

@@ -15,7 +15,7 @@ const Header = ({activeTab, setActiveTab}) => {
           style={styles.tabs(activeTab === screen.name)}
           onPress={() => {
             setActiveTab(screen.name);
-            navigation.navigate(activeTab);
+            navigation.navigate(screen.name);
           }}>
           <Image source={screen.img} style={[styles.tabimg]} />
         </TouchableOpacity>

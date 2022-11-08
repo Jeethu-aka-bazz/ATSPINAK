@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import font from '../../assets/fonts/font';
 import {breakpoint} from '../../data/breakpoint';
 import Buttons from './Buttons';
@@ -7,23 +7,30 @@ import RowBox from './RowBox';
 import notification from '../../assets/images/notificationWeb.png';
 import theme from '../../assets/themes/themes';
 
-const PageBodyHeader = ({windowWidth}) => {
+const PageBodyHeader = ({windowWidth, setShowAddRole}) => {
   return (
     <>
       <Text style={[styles.header]}>Roles</Text>
       {windowWidth >= breakpoint && (
-        <CreateNewWeb buttontext="+  Create new role" />
+        <CreateNewWeb
+          buttontext="+  Create new role"
+          setShowAddRole={setShowAddRole}
+        />
       )}
     </>
   );
 };
 
-const CreateNewWeb = ({buttontext}) => {
+const CreateNewWeb = ({buttontext, setShowAddRole}) => {
   return (
     <RowBox style={[styles.createNewWebcont]}>
-      <View style={[styles.createNewWebbutton]}>
+      <TouchableOpacity
+        style={[styles.createNewWebbutton]}
+        onPress={() => {
+          setShowAddRole(true);
+        }}>
         <Text style={[styles.createNewWebbuttontext]}>{buttontext}</Text>
-      </View>
+      </TouchableOpacity>
       <View style={[styles.createNewWebimgbackground]}>
         <Image source={notification} style={[styles.createNewWebimg]} />
       </View>

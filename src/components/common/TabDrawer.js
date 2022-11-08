@@ -29,8 +29,8 @@ const TabDrawer = ({
           key={i}
           style={[styles.drawerbody(activeTab === screen.name)]}
           onPress={() => {
+            navigation.navigate(screen.name);
             setActiveTab(screen.name);
-            navigation.navigate(activeTab);
             setShowDrawer(!showDrawer);
           }}>
           <RowBox>

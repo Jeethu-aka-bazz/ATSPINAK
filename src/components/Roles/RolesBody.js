@@ -36,7 +36,10 @@ const RolesBody = ({
     <>
       <ScrollView style={[styles.scrollview]}>
         <View style={[styles.bodycont]}>
-          <PageBodyHeader windowWidth={windowWidth} />
+          <PageBodyHeader
+            windowWidth={windowWidth}
+            setShowAddRole={setShowAddRole}
+          />
           <RowBox>
             <Buttons
               title="Open roles - 32"
