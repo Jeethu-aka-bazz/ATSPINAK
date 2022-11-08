@@ -1,16 +1,22 @@
 import React, {useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {View} from 'react-native';
 import Header from '../../components/header/MobileView';
 import RolesBody from '../../components/Roles/RolesBody';
 
+// const [formsubmit, setFormsubmit] = useState(false);
 const MobileView = ({
   showDrawer,
   setShowDrawer,
   showAddRole,
   setShowAddRole,
+  year,
+  setYear,
+  noofreq,
+  setNoofreq,
+  formsubmit,
+  setFormsubmit,
 }) => {
   const [rolename, setRolename] = useState('');
-  const [noofreq, setNoofreq] = useState(1);
   return (
     <View>
       <Header showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
@@ -21,6 +27,10 @@ const MobileView = ({
         setShowAddRole={setShowAddRole}
         noofreq={noofreq}
         setNoofreq={setNoofreq}
+        year={year}
+        setYear={setYear}
+        formsubmit={formsubmit}
+        setFormsubmit={setFormsubmit}
       />
     </View>
   );

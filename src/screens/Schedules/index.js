@@ -6,7 +6,7 @@ import {screens} from '../../data/screens';
 import DesktopView from './DesktopView';
 import MobileView from './MobileView';
 
-const Schedules = ({activeTab, setActiveTab}) => {
+const OverView = ({activeTab, setActiveTab}) => {
   const windowWidth = useWindowDimensions().width;
   const [showDrawer, setShowDrawer] = useState(false);
 
@@ -31,4 +31,4 @@ const Schedules = ({activeTab, setActiveTab}) => {
   );
 };
 
-export default Schedules;
+export default OverView;

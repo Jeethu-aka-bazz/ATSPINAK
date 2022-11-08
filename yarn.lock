@@ -1424,6 +1424,11 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
+"@miblanchard/react-native-slider@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@miblanchard/react-native-slider/-/react-native-slider-2.1.0.tgz#6249463a9d4aa65dede586637ffe6ca167a9ebf3"
+  integrity sha512-5YRWaQjHl90Ue431RisN+5zr+380L//kWuabzYuo7mVI+CxbHaTQXDr7afkpGgNHCxkkzFlT3tWd+3/QbpgBLQ==
+
 "@react-native-community/cli-clean@^9.2.1":
   version "9.2.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-clean/-/cli-clean-9.2.1.tgz#198c5dd39c432efb5374582073065ff75d67d018"

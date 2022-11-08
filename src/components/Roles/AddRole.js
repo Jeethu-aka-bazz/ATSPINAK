@@ -1,13 +1,13 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   Image,
   Modal,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import font from '../../assets/fonts/font';
@@ -15,7 +15,8 @@ import close from '../../assets/images/closeicon2.png';
 import theme from '../../assets/themes/themes';
 import RowBox from '../common/RowBox';
 import FormBody from './FormBody';
-import Input from './Input';
+import {breakpoint} from '../../data/breakpoint';
+import SubmitForm from './SubmitForm';
 
 const Addrole = ({
   showAddRole,
@@ -24,56 +25,118 @@ const Addrole = ({
   rolename,
   setNoofreq,
   noofreq,
+  year,
+  setYear,
+  formsubmit,
+  setFormsubmit,
 }) => {
   const [active, setActive] = useState('Role details');
+  const windowWidth = useWindowDimensions().width;
+  const isDesktop = windowWidth >= breakpoint;
   return (
     <Modal visible={showAddRole}>
-      <SafeAreaView>
-        <Header setShowAddRole={setShowAddRole} active={active} />
-        <ScrollView>
+      <ScrollView>
+        <Header
+          isDesktop={isDesktop}
+          setShowAddRole={setShowAddRole}
+          active={active}
+          setFormsubmit={setFormsubmit}
+        />
+        {isDesktop ? (
+          <DesktopFormContainer>
+            {formsubmit ? (
+              <SubmitForm />
+            ) : (
+              <FormBody
+                isDesktop={isDesktop}
+                rolename={rolename}
+                setRolename={setRolename}
+                setNoofreq={setNoofreq}
+                noofreq={noofreq}
+                year={year}
+                setYear={setYear}
+              />
+            )}
+          </DesktopFormContainer>
+        ) : formsubmit ? (
+          <SubmitForm />
+        ) : (
           <FormBody
+            isDesktop={isDesktop}
             rolename={rolename}
             setRolename={setRolename}
             setNoofreq={setNoofreq}
             noofreq={noofreq}
+            year={year}
+            setYear={setYear}
           />
-        </ScrollView>
-        <Footer />
-      </SafeAreaView>
+        )}
+      </ScrollView>
+      {!formsubmit && (
+        <Footer setFormsubmit={setFormsubmit} setActive={setActive} />
+      )}
     </Modal>
   );
 };
 
-const Header = ({setShowAddRole, active}) => {
+const DesktopFormContainer = ({children}) => {
+  return (
+    <View
+      style={{
+        backgroundColor: '#F3F9FD',
+        paddingHorizontal: '5%',
+      }}>
+      <View style={{position: 'relative', top: -35}}>{children}</View>
+    </View>
+  );
+};
+
+const Header = ({setShowAddRole, active, isDesktop, setFormsubmit}) => {
   const tabs = ['Role details', 'Create JD'];
   return (
     <View style={[styles.headertopcont]}>
       <RowBox style={[styles.headercont]}>
         <Text style={[styles.headertext1]}>Create new role</Text>
         <TouchableOpacity
+          style={{marginTop: isDesktop ? -50 : 0}}
           onPress={() => {
             setShowAddRole(false);
+            setFormsubmit(false);
           }}>
           <Image source={close} style={[styles.closeimg]} />
         </TouchableOpacity>
       </RowBox>
-      <RowBox>
-        {tabs.map((tab, i) => (
-          <RowBox key={i} style={[styles.progressbox(active === tab)]}>
-            <View style={[styles.circle]} />
-            <Text style={[styles.headersubtext]}>{tab}</Text>
-          </RowBox>
-        ))}
+      <RowBox style={{justifyContent: 'space-between'}}>
+        {isDesktop && (
+          <Text style={{...font.fontstyle3, color: '#FFF'}}>
+            Enter role description & hiring team details
+          </Text>
+        )}
+        <RowBox>
+          {tabs.map((tab, i) => (
+            <RowBox key={i} style={[styles.progressbox(active === tab)]}>
+              <View style={[styles.circle]} />
+              <Text style={[styles.headersubtext]}>{tab}</Text>
+            </RowBox>
+          ))}
+        </RowBox>
       </RowBox>
     </View>
   );
 };
 
-const Footer = () => {
+const Footer = ({setFormsubmit, setActive}) => {
   return (
     <View style={[styles.footercont]}>
-      <TouchableOpacity style={[styles.footerbtn]}>
-        <Text>Confirm and next</Text>
+      <TouchableOpacity
+        style={[styles.footerbtn]}
+        onPress={() => {
+          setFormsubmit(true);
+          setActive('Create JD');
+        }}>
+        <Text style={[{...font.fontstyle4, color: '#FFF'}]}>
+          Confirm and next
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -106,8 +169,9 @@ const styles = StyleSheet.create({
   }),
   headertopcont: {
     backgroundColor: theme.createroleheader,
-    paddingHorizontal: 25,
-    paddingVertical: 14,
+    paddingHorizontal: '5%',
+    paddingBottom: '4%',
+    paddingVertical: 30,
   },
   headertext1: {
     ...font.fontstyle5,
@@ -122,6 +186,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     paddingVertical: 12,
     paddingHorizontal: 24,
+    // marginTop: 55,
   },
   footerbtn: {
     backgroundColor: theme.addrolebackground,

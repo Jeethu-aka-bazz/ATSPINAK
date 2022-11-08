@@ -18,6 +18,8 @@ const theme = {
   progressnotdoneborder: '#F6F6F6',
   addrolebackground: '#FF4375',
   createroleheader: '#3384C3',
+  roletext: '#252525',
+  radiobtnactive: '#174D90',
 };
 
 export default theme;

@@ -10,6 +10,10 @@ const Roles = ({activeTab, setActiveTab}) => {
   const windowWidth = useWindowDimensions().width;
   const [showDrawer, setShowDrawer] = useState(false);
   const [showAddRole, setShowAddRole] = useState(false);
+  const [year, setYear] = useState([3, 5]);
+  const [noofreq, setNoofreq] = useState(1);
+  const [formsubmit, setFormsubmit] = useState(false);
+
   return (
     <>
       <SafeAreaView>
@@ -19,6 +23,12 @@ const Roles = ({activeTab, setActiveTab}) => {
             setActiveTab={setActiveTab}
             setShowAddRole={setShowAddRole}
             showAddRole={showAddRole}
+            year={year}
+            setYear={setYear}
+            noofreq={noofreq}
+            setNoofreq={setNoofreq}
+            formsubmit={formsubmit}
+            setFormsubmit={setFormsubmit}
           />
         ) : showDrawer ? (
           <TabDrawer
@@ -34,6 +44,12 @@ const Roles = ({activeTab, setActiveTab}) => {
             setShowDrawer={setShowDrawer}
             showAddRole={showAddRole}
             setShowAddRole={setShowAddRole}
+            year={year}
+            setYear={setYear}
+            noofreq={noofreq}
+            setNoofreq={setNoofreq}
+            formsubmit={formsubmit}
+            setFormsubmit={setFormsubmit}
           />
         )}
       </SafeAreaView>

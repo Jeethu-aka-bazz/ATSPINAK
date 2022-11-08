@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Image,
   Platform,
@@ -22,6 +22,7 @@ import PageBodyHeader from '../common/PageBodyHeader';
 import Buttons from '../common/Buttons';
 import Addrole from './AddRole';
 
+// const [formsubmit, setFormsubmit] = useState(false);
 const RolesBody = ({
   rolename,
   setRolename,
@@ -29,6 +30,10 @@ const RolesBody = ({
   setShowAddRole,
   setNoofreq,
   noofreq,
+  year,
+  setYear,
+  formsubmit,
+  setFormsubmit,
 }) => {
   const roles = store.getState().roles;
   const windowWidth = useWindowDimensions().width;
@@ -66,6 +71,10 @@ const RolesBody = ({
         setShowAddRole={setShowAddRole}
         noofreq={noofreq}
         setNoofreq={setNoofreq}
+        year={year}
+        setYear={setYear}
+        formsubmit={formsubmit}
+        setFormsubmit={setFormsubmit}
       />
     </>
   );
