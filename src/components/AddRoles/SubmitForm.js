@@ -4,9 +4,13 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import font from '../../assets/fonts/font';
 import jd from '../../assets/images/JD.png';
 
-// setActive={setActive}
-const SubmitForm = ({isDesktop, setFormsubmit, setActive}) => {
-  const navigation = useNavigation();
+const SubmitForm = ({
+  isDesktop,
+  setFormsubmit,
+  setActive,
+  setShowCreateJD,
+  setShowAddRole,
+}) => {
   return (
     <View style={[styles.rootcont(isDesktop)]}>
       <View style={[styles.container(isDesktop)]}>
@@ -14,18 +18,19 @@ const SubmitForm = ({isDesktop, setFormsubmit, setActive}) => {
         <View>
           <Text style={[styles.header]}>Hello!</Text>
           <Text style={[styles.subheading]}>
-            There ia already a JD created for similar role, would you like to
+            There is already a JD created for similar role, would you like to
             sync that and update
           </Text>
           <View style={{flexDirection: isDesktop ? 'row' : 'column'}}>
-            <Button label="Yes, let's view " onPress={() => {}} />
             <Button
-              label="No, let's create new"
+              label="Yes, let's view "
               onPress={() => {
                 setFormsubmit(false);
-                setActive('Role details');
+                setShowCreateJD(true);
+                setShowAddRole(false);
               }}
             />
+            <Button label="No, let's create new" onPress={() => {}} />
           </View>
         </View>
       </View>

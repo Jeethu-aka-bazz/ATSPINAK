@@ -1,12 +1,42 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import rolereducer from './reducers/rolereducer';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import jdreducer from './reducers/jdreducer';
 
-const rootreducer = combineReducers({
+const presistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['roles', 'jd'],
+  // blacklist: ['counter'],
+};
+
+const RootReducer = combineReducers({
   roles: rolereducer,
+  jd: jdreducer,
 });
+
+const persistedReducer = persistReducer(presistConfig, RootReducer);
 
 const store = configureStore({
-  reducer: rootreducer,
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
-export default store;
+const persistor = persistStore(store);
+
+export {store, persistor};

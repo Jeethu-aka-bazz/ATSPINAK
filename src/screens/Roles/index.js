@@ -6,6 +6,7 @@ import TabDrawer from '../../components/common/TabDrawer';
 import {screens} from '../../data/screens';
 import {breakpoint} from '../../data/breakpoint';
 import {mounths} from '../../data/mounths';
+import {store} from '../../store/store';
 
 const Roles = ({activeTab, setActiveTab}) => {
   const formateDate = date => {
@@ -14,8 +15,39 @@ const Roles = ({activeTab, setActiveTab}) => {
     );
   };
 
-  const date = new Date();
+  const restoreStates = () => {
+    setRolename('');
+    setNoofreq(1);
+    setIsFlexiable(false);
+    setActiveWorkplace('Office');
+    setActiveJobType('Full time');
+    setPriority('High');
+    sethiringmanager('Artem Sazonov');
+    setNoofRound(0);
+    setRequestedRoleType('Tech Team');
+    setActive('Role details');
+  };
 
+  const saveRole = () => {
+    const payload = {
+      name: rolename,
+      department: requestedRoleType,
+      noofrecruitment: noofreq,
+      createddate: openDate,
+      closedDate: closeDate,
+      priority: priority,
+      progress: {
+        publishedJD: isJDPublished,
+        sourcing: false,
+        shortlisting: false,
+        hiring: false,
+      },
+    };
+    store.dispatch({type: 'addRole', payload: payload});
+    restoreStates();
+  };
+
+  const date = new Date();
   const windowWidth = useWindowDimensions().width;
   const [showDrawer, setShowDrawer] = useState(false);
   const [showAddRole, setShowAddRole] = useState(false);
@@ -32,12 +64,18 @@ const Roles = ({activeTab, setActiveTab}) => {
   const [hiringmanager, sethiringmanager] = useState('Artem Sazonov');
   const [noofRound, setNoofRound] = useState(0);
   const [roundsDetails, setRoundsDetails] = useState([]);
+  const [requestedRoleType, setRequestedRoleType] = useState('Tech Team');
+  const [isJDPublished, setIsJDPublished] = useState(false);
+  const [active, setActive] = useState('Role details');
+  const [showCreateJD, setShowCreateJD] = useState(false);
 
   return (
     <>
       <SafeAreaView>
         {windowWidth >= breakpoint ? (
           <DesktopView
+            setActive={setActive}
+            active={active}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             setShowAddRole={setShowAddRole}
@@ -67,6 +105,12 @@ const Roles = ({activeTab, setActiveTab}) => {
             noofRound={noofRound}
             setNoofRound={setNoofRound}
             setRoundsDetails={setRoundsDetails}
+            saveRole={saveRole}
+            requestedRoleType={requestedRoleType}
+            setRequestedRoleType={setRequestedRoleType}
+            restoreStates={restoreStates}
+            showCreateJD={showCreateJD}
+            setShowCreateJD={setShowCreateJD}
           />
         ) : showDrawer ? (
           <TabDrawer
@@ -78,6 +122,8 @@ const Roles = ({activeTab, setActiveTab}) => {
           />
         ) : (
           <MobileView
+            setActive={setActive}
+            active={active}
             windowWidth={windowWidth}
             showDrawer={showDrawer}
             setShowDrawer={setShowDrawer}
@@ -108,6 +154,12 @@ const Roles = ({activeTab, setActiveTab}) => {
             noofRound={noofRound}
             setNoofRound={setNoofRound}
             setRoundsDetails={setRoundsDetails}
+            saveRole={saveRole}
+            requestedRoleType={requestedRoleType}
+            setRequestedRoleType={setRequestedRoleType}
+            restoreStates={restoreStates}
+            showCreateJD={showCreateJD}
+            setShowCreateJD={setShowCreateJD}
           />
         )}
       </SafeAreaView>

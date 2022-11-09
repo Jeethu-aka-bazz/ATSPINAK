@@ -12,7 +12,7 @@ import {
 import theme from '../../assets/themes/themes';
 import font from '../../assets/fonts/font';
 import Role from './Role';
-import store from '../../store/store';
+import {store} from '../../store/store';
 import {breakpoint} from '../../data/breakpoint';
 import RowBox from '../common/RowBox';
 import dropdown from '../../assets/images/dropdown.png';

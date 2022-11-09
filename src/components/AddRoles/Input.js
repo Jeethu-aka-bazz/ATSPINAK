@@ -22,6 +22,7 @@ const Input = ({
   rightbtn,
   changeDropdown,
   contstyle,
+  onRightBtnPress,
   dropdownlistItems = [],
   type = 'text',
 }) => {
@@ -46,7 +47,7 @@ const Input = ({
             onChangeText={onChange}
           />
           {hasbtnright && (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onRightBtnPress}>
               <Image source={rightbtn} style={[styles.dropdown2img]} />
             </TouchableOpacity>
           )}

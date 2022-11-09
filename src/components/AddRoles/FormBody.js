@@ -33,6 +33,8 @@ const FormBody = ({
   noofRound,
   setNoofRound,
   setRoundsDetails,
+  requestedRoleType,
+  setRequestedRoleType,
 }) => {
   return (
     <View style={{backgroundColor: '#FFF', borderRadius: 4}}>
@@ -167,11 +169,11 @@ const FormBody = ({
           />
           <Input
             label="Requested person role"
-            value={'Team lead'}
-            changeDropdown={() => {}}
+            value={requestedRoleType}
+            changeDropdown={setRequestedRoleType}
             labelstyle={{marginTop: 24}}
             type="dropdown"
-            dropdownlistItems={[1, 2, 3]}
+            dropdownlistItems={['Tech team', 'Sales Team', 'Analysis Team']}
           />
           <RowBox style={{alignItems: 'center'}}>
             <Input
@@ -357,6 +359,9 @@ const RoleName = ({rolename, setRolename, noofreq, setNoofreq}) => {
         rightbtn={dropdown2}
         onChange={e => {
           !isNaN(e) && setNoofreq(e);
+        }}
+        onRightBtnPress={() => {
+          setNoofreq(noofreq + 1);
         }}
         value={noofreq + ''}
         boxstyle={{width: 70}}

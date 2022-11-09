@@ -11,14 +11,15 @@ import {
   View,
 } from 'react-native';
 import font from '../../assets/fonts/font';
-import close from '../../assets/images/closeicon2.png';
 import theme from '../../assets/themes/themes';
-import RowBox from '../common/RowBox';
 import FormBody from './FormBody';
 import {breakpoint} from '../../data/breakpoint';
 import SubmitForm from './SubmitForm';
+import AddRoleHeader from './AddRoleHeader';
 
 const Addrole = ({
+  active,
+  setActive,
   showAddRole,
   setShowAddRole,
   setRolename,
@@ -46,19 +47,24 @@ const Addrole = ({
   noofRound,
   setNoofRound,
   setRoundsDetails,
+  saveRole,
+  requestedRoleType,
+  setRequestedRoleType,
+  restoreStates,
+  setShowCreateJD,
 }) => {
-  const [active, setActive] = useState('Role details');
   const windowWidth = useWindowDimensions().width;
   const isDesktop = windowWidth >= breakpoint;
   return (
     <Modal visible={showAddRole}>
       <ScrollView>
-        <Header
+        <AddRoleHeader
           isDesktop={isDesktop}
-          setShowAddRole={setShowAddRole}
+          closeModal={setShowAddRole}
           active={active}
           setActive={setActive}
           setFormsubmit={setFormsubmit}
+          restoreStates={restoreStates}
         />
         {isDesktop ? (
           <DesktopFormContainer>
@@ -67,6 +73,8 @@ const Addrole = ({
                 isDesktop={isDesktop}
                 setFormsubmit={setFormsubmit}
                 setActive={setActive}
+                setShowCreateJD={setShowCreateJD}
+                setShowAddRole={setShowAddRole}
               />
             ) : (
               <FormBody
@@ -94,6 +102,8 @@ const Addrole = ({
                 noofRound={noofRound}
                 setNoofRound={setNoofRound}
                 setRoundsDetails={setRoundsDetails}
+                requestedRoleType={requestedRoleType}
+                setRequestedRoleType={setRequestedRoleType}
               />
             )}
           </DesktopFormContainer>
@@ -102,6 +112,8 @@ const Addrole = ({
             isDesktop={isDesktop}
             setFormsubmit={setFormsubmit}
             setActive={setActive}
+            setShowCreateJD={setShowCreateJD}
+            setShowAddRole={setShowAddRole}
           />
         ) : (
           <FormBody
@@ -129,11 +141,17 @@ const Addrole = ({
             noofRound={noofRound}
             setNoofRound={setNoofRound}
             setRoundsDetails={setRoundsDetails}
+            requestedRoleType={requestedRoleType}
+            setRequestedRoleType={setRequestedRoleType}
           />
         )}
       </ScrollView>
-      {!formsubmit && (
-        <Footer setFormsubmit={setFormsubmit} setActive={setActive} />
+      {!formsubmit && rolename !== '' && (
+        <Footer
+          saveRole={saveRole}
+          setFormsubmit={setFormsubmit}
+          setActive={setActive}
+        />
       )}
     </Modal>
   );
@@ -151,48 +169,7 @@ const DesktopFormContainer = ({children}) => {
   );
 };
 
-const Header = ({
-  setShowAddRole,
-  active,
-  isDesktop,
-  setFormsubmit,
-  setActive,
-}) => {
-  const tabs = ['Role details', 'Create JD'];
-  return (
-    <View style={[styles.headertopcont]}>
-      <RowBox style={[styles.headercont]}>
-        <Text style={[styles.headertext1]}>Create new role</Text>
-        <TouchableOpacity
-          style={{marginTop: isDesktop ? -50 : 0}}
-          onPress={() => {
-            setShowAddRole(false);
-            setFormsubmit(false);
-            setActive('Role details');
-          }}>
-          <Image source={close} style={[styles.closeimg]} />
-        </TouchableOpacity>
-      </RowBox>
-      <RowBox style={{justifyContent: 'space-between'}}>
-        {isDesktop && (
-          <Text style={{...font.fontstyle3, color: '#FFF'}}>
-            Enter role description & hiring team details
-          </Text>
-        )}
-        <RowBox>
-          {tabs.map((tab, i) => (
-            <RowBox key={i} style={[styles.progressbox(active === tab)]}>
-              <View style={[styles.circle]} />
-              <Text style={[styles.headersubtext]}>{tab}</Text>
-            </RowBox>
-          ))}
-        </RowBox>
-      </RowBox>
-    </View>
-  );
-};
-
-const Footer = ({setFormsubmit, setActive}) => {
+const Footer = ({setFormsubmit, setActive, saveRole}) => {
   return (
     <View style={[styles.footercont]}>
       <TouchableOpacity
@@ -200,6 +177,7 @@ const Footer = ({setFormsubmit, setActive}) => {
         onPress={() => {
           setFormsubmit(true);
           setActive('Create JD');
+          saveRole();
         }}>
         <Text style={[{...font.fontstyle4, color: '#FFF'}]}>
           Confirm and next
@@ -210,41 +188,6 @@ const Footer = ({setFormsubmit, setActive}) => {
 };
 
 const styles = StyleSheet.create({
-  closeimg: {
-    width: 40,
-    height: 40,
-  },
-  headercont: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  circle: {
-    backgroundColor: '#FFF',
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    marginRight: 10,
-  },
-  headersubtext: {
-    ...font.fontstyle3,
-    color: '#FFF',
-    marginRight: 17,
-  },
-  progressbox: isactive => ({
-    alignItems: 'center',
-    opacity: isactive ? 1 : 0.4,
-  }),
-  headertopcont: {
-    backgroundColor: theme.createroleheader,
-    paddingHorizontal: '5%',
-    paddingBottom: '4%',
-    paddingVertical: 30,
-  },
-  headertext1: {
-    ...font.fontstyle5,
-    color: '#FFF',
-    marginVertical: 21,
-  },
   footercont: {
     shadowColor: 'rgba(0, 0, 0, 0.08);',
     shadowRadius: 8,
