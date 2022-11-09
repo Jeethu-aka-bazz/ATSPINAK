@@ -14,7 +14,7 @@ let initialstate = [
     },
   },
   {
-    name: 'Product Manager',
+    name: 'Senior Design Manager',
     department: 'Sales team',
     noofrecruitment: '01',
     createddate: '12 May 2022',
@@ -28,8 +28,8 @@ let initialstate = [
     },
   },
   {
-    name: 'Product Manager',
-    department: 'Sales team',
+    name: 'Senior full stack developer ',
+    department: 'Tech team',
     noofrecruitment: '04',
     createddate: '12 May 2022',
     closedDate: '12 Jun 2022',
@@ -42,8 +42,8 @@ let initialstate = [
     },
   },
   {
-    name: 'Product Manager',
-    department: 'Sales team',
+    name: 'Senior Design Manager',
+    department: 'Design team',
     noofrecruitment: '04',
     createddate: '12 May 2022',
     closedDate: '12 Jun 2022',
@@ -56,7 +56,7 @@ let initialstate = [
     },
   },
   {
-    name: 'Product Manager',
+    name: 'Product support',
     department: 'Sales team',
     noofrecruitment: '04',
     createddate: '12 May 2022',

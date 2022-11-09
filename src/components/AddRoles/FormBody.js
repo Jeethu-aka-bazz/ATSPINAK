@@ -173,7 +173,14 @@ const FormBody = ({
             changeDropdown={setRequestedRoleType}
             labelstyle={{marginTop: 24}}
             type="dropdown"
-            dropdownlistItems={['Tech team', 'Sales Team', 'Analysis Team']}
+            dropdownlistItems={[
+              'Product Manager',
+              'Senior full stack developer ',
+              'Senior Design Manager',
+              'Tech Lead',
+              'Product support',
+              'Front end developer',
+            ]}
           />
           <RowBox style={{alignItems: 'center'}}>
             <Input

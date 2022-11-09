@@ -30,8 +30,8 @@ const Roles = ({activeTab, setActiveTab}) => {
 
   const saveRole = () => {
     const payload = {
-      name: rolename,
-      department: requestedRoleType,
+      name: requestedRoleType,
+      department: rolename,
       noofrecruitment: noofreq,
       createddate: openDate,
       closedDate: closeDate,
