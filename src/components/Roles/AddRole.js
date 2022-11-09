@@ -63,7 +63,11 @@ const Addrole = ({
         {isDesktop ? (
           <DesktopFormContainer>
             {formsubmit ? (
-              <SubmitForm />
+              <SubmitForm
+                isDesktop={isDesktop}
+                setFormsubmit={setFormsubmit}
+                setActive={setActive}
+              />
             ) : (
               <FormBody
                 isDesktop={isDesktop}
@@ -94,7 +98,11 @@ const Addrole = ({
             )}
           </DesktopFormContainer>
         ) : formsubmit ? (
-          <SubmitForm />
+          <SubmitForm
+            isDesktop={isDesktop}
+            setFormsubmit={setFormsubmit}
+            setActive={setActive}
+          />
         ) : (
           <FormBody
             isDesktop={isDesktop}
