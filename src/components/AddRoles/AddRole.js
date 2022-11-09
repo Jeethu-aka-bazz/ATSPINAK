@@ -16,45 +16,23 @@ import FormBody from './FormBody';
 import {breakpoint} from '../../data/breakpoint';
 import SubmitForm from './SubmitForm';
 import AddRoleHeader from './AddRoleHeader';
+import DesktopFormContainer from '../common/DesktopFormContainer';
 
-const Addrole = ({
-  active,
-  setActive,
-  showAddRole,
-  setShowAddRole,
-  setRolename,
-  rolename,
-  setNoofreq,
-  noofreq,
-  year,
-  setYear,
-  formsubmit,
-  setFormsubmit,
-  isFlexiable,
-  setIsFlexiable,
-  setActiveWorkplace,
-  activeWorkplace,
-  activeJobType,
-  setActiveJobType,
-  priority,
-  setPriority,
-  closeDate,
-  setCloseDate,
-  openDate,
-  setOpenDate,
-  hiringmanager,
-  sethiringmanager,
-  noofRound,
-  setNoofRound,
-  setRoundsDetails,
-  saveRole,
-  requestedRoleType,
-  setRequestedRoleType,
-  restoreStates,
-  setShowCreateJD,
-}) => {
+const Addrole = props => {
   const windowWidth = useWindowDimensions().width;
-  const isDesktop = windowWidth >= breakpoint;
+  const {
+    showAddRole,
+    setShowAddRole,
+    active,
+    setActive,
+    setFormsubmit,
+    restoreStates,
+    formsubmit,
+    setShowCreateJD,
+    saveRole,
+    rolename,
+    isDesktop,
+  } = props;
   return (
     <Modal visible={showAddRole}>
       <ScrollView>
@@ -65,6 +43,8 @@ const Addrole = ({
           setActive={setActive}
           setFormsubmit={setFormsubmit}
           restoreStates={restoreStates}
+          saveRole={saveRole}
+          formsubmit={formsubmit}
         />
         {isDesktop ? (
           <DesktopFormContainer>
@@ -77,34 +57,7 @@ const Addrole = ({
                 setShowAddRole={setShowAddRole}
               />
             ) : (
-              <FormBody
-                isDesktop={isDesktop}
-                rolename={rolename}
-                setRolename={setRolename}
-                setNoofreq={setNoofreq}
-                noofreq={noofreq}
-                year={year}
-                setYear={setYear}
-                isFlexiable={isFlexiable}
-                setIsFlexiable={setIsFlexiable}
-                activeWorkplace={activeWorkplace}
-                setActiveWorkplace={setActiveWorkplace}
-                activeJobType={activeJobType}
-                setActiveJobType={setActiveJobType}
-                priority={priority}
-                setPriority={setPriority}
-                closeDate={closeDate}
-                setCloseDate={setCloseDate}
-                openDate={openDate}
-                setOpenDate={setOpenDate}
-                hiringmanager={hiringmanager}
-                sethiringmanager={sethiringmanager}
-                noofRound={noofRound}
-                setNoofRound={setNoofRound}
-                setRoundsDetails={setRoundsDetails}
-                requestedRoleType={requestedRoleType}
-                setRequestedRoleType={setRequestedRoleType}
-              />
+              <FormBody {...props} />
             )}
           </DesktopFormContainer>
         ) : formsubmit ? (
@@ -116,60 +69,17 @@ const Addrole = ({
             setShowAddRole={setShowAddRole}
           />
         ) : (
-          <FormBody
-            isDesktop={isDesktop}
-            rolename={rolename}
-            setRolename={setRolename}
-            setNoofreq={setNoofreq}
-            noofreq={noofreq}
-            year={year}
-            setYear={setYear}
-            isFlexiable={isFlexiable}
-            setIsFlexiable={setIsFlexiable}
-            activeWorkplace={activeWorkplace}
-            setActiveWorkplace={setActiveWorkplace}
-            activeJobType={activeJobType}
-            setActiveJobType={setActiveJobType}
-            priority={priority}
-            setPriority={setPriority}
-            closeDate={closeDate}
-            setCloseDate={setCloseDate}
-            openDate={openDate}
-            setOpenDate={setOpenDate}
-            hiringmanager={hiringmanager}
-            sethiringmanager={sethiringmanager}
-            noofRound={noofRound}
-            setNoofRound={setNoofRound}
-            setRoundsDetails={setRoundsDetails}
-            requestedRoleType={requestedRoleType}
-            setRequestedRoleType={setRequestedRoleType}
-          />
+          <FormBody {...props} />
         )}
       </ScrollView>
       {!formsubmit && rolename !== '' && (
-        <Footer
-          saveRole={saveRole}
-          setFormsubmit={setFormsubmit}
-          setActive={setActive}
-        />
+        <Footer setFormsubmit={setFormsubmit} setActive={setActive} />
       )}
     </Modal>
   );
 };
 
-const DesktopFormContainer = ({children}) => {
-  return (
-    <View
-      style={{
-        backgroundColor: '#F3F9FD',
-        paddingHorizontal: '5%',
-      }}>
-      <View style={{position: 'relative', top: -35}}>{children}</View>
-    </View>
-  );
-};
-
-const Footer = ({setFormsubmit, setActive, saveRole}) => {
+const Footer = ({setFormsubmit, setActive}) => {
   return (
     <View style={[styles.footercont]}>
       <TouchableOpacity
@@ -177,7 +87,6 @@ const Footer = ({setFormsubmit, setActive, saveRole}) => {
         onPress={() => {
           setFormsubmit(true);
           setActive('Create JD');
-          saveRole();
         }}>
         <Text style={[{...font.fontstyle4, color: '#FFF'}]}>
           Confirm and next

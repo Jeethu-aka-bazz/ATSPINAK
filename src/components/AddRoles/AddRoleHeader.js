@@ -12,15 +12,20 @@ const AddRoleHeader = ({
   setFormsubmit = () => {},
   setActive = () => {},
   restoreStates,
+  heading,
+  subheading,
+  saveRole,
+  formsubmit,
 }) => {
   const tabs = ['Role details', 'Create JD'];
   return (
     <View style={[styles.headertopcont]}>
       <RowBox style={[styles.headercont]}>
-        <Text style={[styles.headertext1]}>Create new role</Text>
+        <Text style={[styles.headertext1]}>{heading || 'Create new role'}</Text>
         <TouchableOpacity
           style={{marginTop: isDesktop ? -50 : 0}}
           onPress={() => {
+            formsubmit && saveRole();
             closeModal(false);
             setFormsubmit(false);
             restoreStates();
@@ -31,7 +36,7 @@ const AddRoleHeader = ({
       <RowBox style={{justifyContent: 'space-between'}}>
         {isDesktop && (
           <Text style={{...font.fontstyle3, color: '#FFF'}}>
-            Enter role description & hiring team details
+            {subheading || 'Enter role description & hiring team details'}
           </Text>
         )}
         <RowBox>

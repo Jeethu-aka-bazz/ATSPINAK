@@ -16,8 +16,8 @@ import jdreducer from './reducers/jdreducer';
 const presistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['roles', 'jd'],
-  // blacklist: ['counter'],
+  whitelist: ['jd', 'roles'],
+  // blacklist: ['roles'],
 };
 
 const RootReducer = combineReducers({

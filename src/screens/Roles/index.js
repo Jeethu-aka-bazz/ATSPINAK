@@ -37,7 +37,7 @@ const Roles = ({activeTab, setActiveTab}) => {
       closedDate: closeDate,
       priority: priority,
       progress: {
-        publishedJD: isJDPublished,
+        publishedJD: showCreateJD,
         sourcing: false,
         shortlisting: false,
         hiring: false,
@@ -49,6 +49,7 @@ const Roles = ({activeTab, setActiveTab}) => {
 
   const date = new Date();
   const windowWidth = useWindowDimensions().width;
+  const isDesktop = windowWidth >= breakpoint;
   const [showDrawer, setShowDrawer] = useState(false);
   const [showAddRole, setShowAddRole] = useState(false);
   const [year, setYear] = useState([3, 5]);
@@ -65,7 +66,6 @@ const Roles = ({activeTab, setActiveTab}) => {
   const [noofRound, setNoofRound] = useState(0);
   const [roundsDetails, setRoundsDetails] = useState([]);
   const [requestedRoleType, setRequestedRoleType] = useState('Tech Team');
-  const [isJDPublished, setIsJDPublished] = useState(false);
   const [active, setActive] = useState('Role details');
   const [showCreateJD, setShowCreateJD] = useState(false);
 
@@ -111,6 +111,7 @@ const Roles = ({activeTab, setActiveTab}) => {
             restoreStates={restoreStates}
             showCreateJD={showCreateJD}
             setShowCreateJD={setShowCreateJD}
+            isDesktop={isDesktop}
           />
         ) : showDrawer ? (
           <TabDrawer
@@ -160,6 +161,7 @@ const Roles = ({activeTab, setActiveTab}) => {
             restoreStates={restoreStates}
             showCreateJD={showCreateJD}
             setShowCreateJD={setShowCreateJD}
+            isDesktop={isDesktop}
           />
         )}
       </SafeAreaView>
