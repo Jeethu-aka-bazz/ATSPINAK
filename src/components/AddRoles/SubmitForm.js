@@ -30,7 +30,14 @@ const SubmitForm = ({
                 setShowAddRole(false);
               }}
             />
-            <Button label="No, let's create new" onPress={() => {}} />
+            <Button
+              label="No, let's create new"
+              onPress={() => {
+                setFormsubmit(false);
+                setShowCreateJD(true);
+                setShowAddRole(false);
+              }}
+            />
           </View>
         </View>
       </View>
