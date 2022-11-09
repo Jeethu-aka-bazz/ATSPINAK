@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import font from '../../assets/fonts/font';
 import RowBox from '../common/RowBox';
@@ -7,7 +7,6 @@ import Input from './Input';
 import dropdown2 from '../../assets/images/dropdown2.png';
 import {Slider} from '@miblanchard/react-native-slider';
 import RadioButton from '../common/RadioButton';
-import {mounths} from '../../data/mounths';
 
 const FormBody = ({
   setRolename,
@@ -17,15 +16,24 @@ const FormBody = ({
   year,
   setYear,
   isDesktop,
+  isFlexiable,
+  setIsFlexiable,
+  activeWorkplace,
+  setActiveWorkplace,
+  activeJobType,
+  setActiveJobType,
+  priority,
+  setPriority,
+  closeDate,
+  setCloseDate,
+  openDate,
+  setOpenDate,
+  hiringmanager,
+  sethiringmanager,
+  noofRound,
+  setNoofRound,
+  setRoundsDetails,
 }) => {
-  const date = new Date();
-  const [openDate, setOpenDate] = useState(
-    date.getDate() + ' ' + mounths[date.getMonth()] + ' ' + date.getFullYear(),
-  );
-  const [closeDate, setCloseDate] = useState(
-    date.getDate() + ' ' + mounths[date.getMonth()] + ' ' + date.getFullYear(),
-  );
-  const [priority, setPriority] = useState('High');
   return (
     <View style={{backgroundColor: '#FFF', borderRadius: 4}}>
       <Container isDesktop={isDesktop}>
@@ -45,15 +53,26 @@ const FormBody = ({
             noofreq={noofreq}
             setNoofreq={setNoofreq}
           />
-          <Expirence year={year} setYear={setYear} />
-          <Jobtype />
-          <Workplace />
+          <Expirence
+            year={year}
+            setYear={setYear}
+            isFlexiable={isFlexiable}
+            setIsFlexiable={setIsFlexiable}
+          />
+          <Jobtype
+            activeJobType={activeJobType}
+            setActiveJobType={setActiveJobType}
+          />
+          <Workplace
+            activeWorkplace={activeWorkplace}
+            setActiveWorkplace={setActiveWorkplace}
+          />
           <Location />
         </View>
       </Container>
       <View style={[styles.hrline]} />
 
-      <Container isDesktop={isDesktop} style={{marginBottom: 46}}>
+      <Container isDesktop={isDesktop}>
         <Heading
           heading="Interview info"
           subheading="Enter the details of hiring team and interview process"
@@ -91,24 +110,128 @@ const FormBody = ({
           />
           <Input
             label="Hiring Manager"
-            value={'-'}
+            value={hiringmanager}
             labelstyle={{marginTop: 24}}
             type="dropdown"
+            changeDropdown={sethiringmanager}
+            dropdownlistItems={[
+              'HighLeanne Simpson',
+              'Saga Lindén',
+              'Wan Gengxin',
+              'Adam Smith',
+            ]}
           />
           <Input
             label="Number of rounds"
-            value={'-'}
+            value={noofRound === 0 ? '-' : noofRound}
+            changeDropdown={setNoofRound}
+            labelstyle={{marginTop: 24}}
+            type="dropdown"
+            dropdownlistItems={[1, 2, 3]}
+          />
+          {/* <RoundDetails /> */}
+        </View>
+      </Container>
+      <View style={[styles.hrline]} />
+      <Container isDesktop={isDesktop} style={{marginBottom: 46}}>
+        <Heading
+          heading="Other info"
+          subheading="Enter details of requested team and budget"
+          isDesktop={isDesktop}
+        />
+        <View
+          style={{
+            padding: isDesktop ? 56 : 0,
+            marginTop: !isDesktop ? 16 : 0,
+            width: isDesktop ? 434 : '100%',
+          }}>
+          <Input
+            label="Team required for"
+            value={"Hustler's Development Team"}
             changeDropdown={() => {}}
             labelstyle={{marginTop: 24}}
             type="dropdown"
             dropdownlistItems={[1, 2, 3]}
           />
+          <Input
+            label="Request from"
+            value={'Leanne Simpson'}
+            changeDropdown={() => {}}
+            labelstyle={{marginTop: 24}}
+            type="dropdown"
+            dropdownlistItems={[
+              'Hangakore Hariwana',
+              'Afamefuna Okparo',
+              'Huỳnh Quỳnh Nhung',
+            ]}
+          />
+          <Input
+            label="Requested person role"
+            value={'Team lead'}
+            changeDropdown={() => {}}
+            labelstyle={{marginTop: 24}}
+            type="dropdown"
+            dropdownlistItems={[1, 2, 3]}
+          />
+          <RowBox style={{alignItems: 'center'}}>
+            <Input
+              value={'5'}
+              onChange={() => {}}
+              label="Max budget in Lakhs per annum"
+              placeholder="Max budget in Lakhs per annum"
+              boxstyle={{width: '60%'}}
+              labelstyle={{marginTop: 24}}
+            />
+            <RadioButton
+              label="Flexible"
+              contstyle={[styles.flexibleradio2]}
+              isActive={isFlexiable}
+              setisActive={setIsFlexiable}
+            />
+          </RowBox>
         </View>
       </Container>
       <View style={[styles.hrline]} />
     </View>
   );
 };
+
+// const RoundDetails = () => {
+//   return (
+//     <RowBox style={{justifyContent: 'space-between'}}>
+//       <Input
+//         label="Hiring Manager"
+//         value={'-'}
+//         labelstyle={{marginTop: 24}}
+//         type="dropdown"
+//         // changeDropdown={sethiringmanager}
+//         dropdownlistItems={[
+//           'HighLeanne Simpson',
+//           'Saga Lindén',
+//           'Wan Gengxin',
+//           'Adam Smith',
+//         ]}
+//         // boxstyle={{width: '130%'}}
+//         contstyle={{width: '40%'}}
+//       />
+//       <Input
+//         label="Hiring Manager"
+//         value={'hiringmanager'}
+//         labelstyle={{marginTop: 24}}
+//         type="dropdown"
+//         // changeDropdown={sethiringmanager}
+//         dropdownlistItems={[
+//           'HighLeanne Simpson',
+//           'Saga Lindén',
+//           'Wan Gengxin',
+//           'Adam Smith',
+//         ]}
+//         // boxstyle={{width: '130%'}}
+//         contstyle={{width: '50%'}}
+//       />
+//     </RowBox>
+//   );
+// };
 
 const Container = ({children, isDesktop, style}) => {
   return <View style={[styles.container(isDesktop), style]}>{children}</View>;
@@ -123,8 +246,7 @@ const Heading = ({heading, subheading, isDesktop}) => {
   );
 };
 
-const Expirence = ({year, setYear}) => {
-  const [isFlexiable, setIsFlexiable] = useState(false);
+const Expirence = ({year, setYear, isFlexiable, setIsFlexiable}) => {
   return (
     <View style={{marginTop: 24}}>
       <Text style={[styles.label]}>Experience required</Text>
@@ -157,8 +279,7 @@ const Expirence = ({year, setYear}) => {
   );
 };
 
-const Jobtype = () => {
-  const [activeJobType, setActiveJobType] = useState('Full time');
+const Jobtype = ({activeJobType, setActiveJobType}) => {
   return (
     <View style={{marginTop: 32}}>
       <Text style={[styles.label]}>Job type</Text>
@@ -189,8 +310,7 @@ const Location = () => {
   );
 };
 
-const Workplace = () => {
-  const [activeWorkplace, setActiveWorkplace] = useState('Office');
+const Workplace = ({activeWorkplace, setActiveWorkplace}) => {
   return (
     <View style={{marginTop: 32}}>
       <Text style={[styles.label]}>Work place</Text>
@@ -299,5 +419,9 @@ const styles = StyleSheet.create({
   headerCont: isDesktop => ({
     marginTop: isDesktop ? 50 : 0,
   }),
+  flexibleradio2: {
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
+  },
 });
 export default FormBody;

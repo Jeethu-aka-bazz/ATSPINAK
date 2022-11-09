@@ -20,21 +20,9 @@ import addrole1 from '../../assets/images/role.png';
 import addrole2 from '../../assets/images/addrole2.png';
 import PageBodyHeader from '../common/PageBodyHeader';
 import Buttons from '../common/Buttons';
-import Addrole from './AddRole';
 
 // const [formsubmit, setFormsubmit] = useState(false);
-const RolesBody = ({
-  rolename,
-  setRolename,
-  showAddRole,
-  setShowAddRole,
-  setNoofreq,
-  noofreq,
-  year,
-  setYear,
-  formsubmit,
-  setFormsubmit,
-}) => {
+const RolesBody = ({setShowAddRole}) => {
   const roles = store.getState().roles;
   const windowWidth = useWindowDimensions().width;
   return (
@@ -64,18 +52,6 @@ const RolesBody = ({
       {!(windowWidth >= breakpoint) && (
         <CreateNewMobile setShowAddRole={setShowAddRole} />
       )}
-      <Addrole
-        rolename={rolename}
-        setRolename={setRolename}
-        showAddRole={showAddRole}
-        setShowAddRole={setShowAddRole}
-        noofreq={noofreq}
-        setNoofreq={setNoofreq}
-        year={year}
-        setYear={setYear}
-        formsubmit={formsubmit}
-        setFormsubmit={setFormsubmit}
-      />
     </>
   );
 };

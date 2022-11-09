@@ -29,6 +29,23 @@ const Addrole = ({
   setYear,
   formsubmit,
   setFormsubmit,
+  isFlexiable,
+  setIsFlexiable,
+  setActiveWorkplace,
+  activeWorkplace,
+  activeJobType,
+  setActiveJobType,
+  priority,
+  setPriority,
+  closeDate,
+  setCloseDate,
+  openDate,
+  setOpenDate,
+  hiringmanager,
+  sethiringmanager,
+  noofRound,
+  setNoofRound,
+  setRoundsDetails,
 }) => {
   const [active, setActive] = useState('Role details');
   const windowWidth = useWindowDimensions().width;
@@ -40,6 +57,7 @@ const Addrole = ({
           isDesktop={isDesktop}
           setShowAddRole={setShowAddRole}
           active={active}
+          setActive={setActive}
           setFormsubmit={setFormsubmit}
         />
         {isDesktop ? (
@@ -55,6 +73,23 @@ const Addrole = ({
                 noofreq={noofreq}
                 year={year}
                 setYear={setYear}
+                isFlexiable={isFlexiable}
+                setIsFlexiable={setIsFlexiable}
+                activeWorkplace={activeWorkplace}
+                setActiveWorkplace={setActiveWorkplace}
+                activeJobType={activeJobType}
+                setActiveJobType={setActiveJobType}
+                priority={priority}
+                setPriority={setPriority}
+                closeDate={closeDate}
+                setCloseDate={setCloseDate}
+                openDate={openDate}
+                setOpenDate={setOpenDate}
+                hiringmanager={hiringmanager}
+                sethiringmanager={sethiringmanager}
+                noofRound={noofRound}
+                setNoofRound={setNoofRound}
+                setRoundsDetails={setRoundsDetails}
               />
             )}
           </DesktopFormContainer>
@@ -69,6 +104,23 @@ const Addrole = ({
             noofreq={noofreq}
             year={year}
             setYear={setYear}
+            isFlexiable={isFlexiable}
+            setIsFlexiable={setIsFlexiable}
+            activeWorkplace={activeWorkplace}
+            setActiveWorkplace={setActiveWorkplace}
+            activeJobType={activeJobType}
+            setActiveJobType={setActiveJobType}
+            priority={priority}
+            setPriority={setPriority}
+            closeDate={closeDate}
+            setCloseDate={setCloseDate}
+            openDate={openDate}
+            setOpenDate={setOpenDate}
+            hiringmanager={hiringmanager}
+            sethiringmanager={sethiringmanager}
+            noofRound={noofRound}
+            setNoofRound={setNoofRound}
+            setRoundsDetails={setRoundsDetails}
           />
         )}
       </ScrollView>
@@ -91,7 +143,13 @@ const DesktopFormContainer = ({children}) => {
   );
 };
 
-const Header = ({setShowAddRole, active, isDesktop, setFormsubmit}) => {
+const Header = ({
+  setShowAddRole,
+  active,
+  isDesktop,
+  setFormsubmit,
+  setActive,
+}) => {
   const tabs = ['Role details', 'Create JD'];
   return (
     <View style={[styles.headertopcont]}>
@@ -102,6 +160,7 @@ const Header = ({setShowAddRole, active, isDesktop, setFormsubmit}) => {
           onPress={() => {
             setShowAddRole(false);
             setFormsubmit(false);
+            setActive('Role details');
           }}>
           <Image source={close} style={[styles.closeimg]} />
         </TouchableOpacity>

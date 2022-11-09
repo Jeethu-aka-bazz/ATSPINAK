@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import font from '../../assets/fonts/font';
 import RowBox from '../common/RowBox';
-
 const Input = ({
   label,
   placeholder,
@@ -22,6 +21,7 @@ const Input = ({
   onChange,
   rightbtn,
   changeDropdown,
+  contstyle,
   dropdownlistItems = [],
   type = 'text',
 }) => {
@@ -71,7 +71,7 @@ const Input = ({
   } else if (type === 'dropdown') {
     return (
       <>
-        <View style={{marginRight: 10}}>
+        <View style={[{marginRight: 10}, contstyle]}>
           <Text
             style={[
               {...font.fontstyle3, marginBottom: 6, color: '#252525'},

@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import Header from '../../components/header/MobileView';
+import Addrole from '../../components/Roles/AddRole';
 import RolesBody from '../../components/Roles/RolesBody';
+import {breakpoint} from '../../data/breakpoint';
 
-// const [formsubmit, setFormsubmit] = useState(false);
 const MobileView = ({
   showDrawer,
   setShowDrawer,
@@ -15,12 +16,34 @@ const MobileView = ({
   setNoofreq,
   formsubmit,
   setFormsubmit,
+  isFlexiable,
+  setIsFlexiable,
+  activeWorkplace,
+  rolename,
+  setRolename,
+  setActiveWorkplace,
+  activeJobType,
+  setActiveJobType,
+  priority,
+  setPriority,
+  closeDate,
+  setCloseDate,
+  openDate,
+  setOpenDate,
+  windowWidth,
+  hiringmanager,
+  sethiringmanager,
+  noofRound,
+  setNoofRound,
+  setRoundsDetails,
 }) => {
-  const [rolename, setRolename] = useState('');
   return (
     <View>
-      <Header showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
-      <RolesBody
+      {windowWidth <= breakpoint && (
+        <Header showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
+      )}
+      <RolesBody setShowAddRole={setShowAddRole} />
+      <Addrole
         rolename={rolename}
         setRolename={setRolename}
         showAddRole={showAddRole}
@@ -31,6 +54,23 @@ const MobileView = ({
         setYear={setYear}
         formsubmit={formsubmit}
         setFormsubmit={setFormsubmit}
+        isFlexiable={isFlexiable}
+        setIsFlexiable={setIsFlexiable}
+        activeWorkplace={activeWorkplace}
+        setActiveWorkplace={setActiveWorkplace}
+        activeJobType={activeJobType}
+        setActiveJobType={setActiveJobType}
+        priority={priority}
+        setPriority={setPriority}
+        closeDate={closeDate}
+        setCloseDate={setCloseDate}
+        openDate={openDate}
+        setOpenDate={setOpenDate}
+        hiringmanager={hiringmanager}
+        sethiringmanager={sethiringmanager}
+        noofRound={noofRound}
+        setNoofRound={setNoofRound}
+        setRoundsDetails={setRoundsDetails}
       />
     </View>
   );
