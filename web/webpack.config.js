@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack'); // need to import
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const rootDir = path.join(__dirname, '../');
 const webpackEnv = process.env.NODE_ENV || 'development';
@@ -18,9 +18,11 @@ module.exports = {
     rules: [
       {
         test: /\.(tsx|ts|jsx|js|mjs)$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         loader: 'babel-loader',
-        options: {presets: ['@babel/env', '@babel/preset-react']},
+        options: {
+          presets: ['@babel/env', '@babel/preset-react', '@babel/preset-flow'],
+        },
       },
       {
         test: /\.(gif|jpe?g|png|svg)$/,

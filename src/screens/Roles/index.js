@@ -63,7 +63,7 @@ const Roles = ({activeTab, setActiveTab}) => {
   const [roundsDetails, setRoundsDetails] = useState([]);
   const [requestedRoleType, setRequestedRoleType] = useState('Product Manager');
   const [active, setActive] = useState('Role details');
-  const [showCreateJD, setShowCreateJD] = useState(true);
+  const [showCreateJD, setShowCreateJD] = useState(false);
 
   return (
     <>

@@ -35,6 +35,7 @@ const DatePicker = ({
           currentDate={new Date()}
           setCurrentDate={onChange}
           showDatePicker={showDatePicker}
+          setShowDatePicker={setShowDatePicker}
         />
       )}
     </View>

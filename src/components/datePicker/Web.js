@@ -1,20 +1,29 @@
 import React from 'react';
-// import DatePicker from 'react-datepicker';
-// import DateTimePicker from '@react-native-community/datetimepicker';
+import {DatePickerModal} from 'react-native-paper-dates';
+import {formateDate} from '../../data/formateDate';
 
-const WebDatePicker = ({currentDate, setCurrentDate, mode = 'date'}) => {
+const WebDatePicker = ({
+  currentDate,
+  setCurrentDate,
+  showDatePicker,
+  setShowDatePicker,
+}) => {
   return (
-    <></>
-    // <DateTimePicker
-    //   selected={currentDate}
-    //   testID="dateTimePicker"
-    //   onChange={date => {
-    //     console.log(date);
-    //   }}
-    //   customInput={<DateBox />}
-    //   mode={mode}
-    //   value={currentDate}
-    // />
+    <DatePickerModal
+      mode="single"
+      visible={showDatePicker}
+      onDismiss={() => {
+        setShowDatePicker(false);
+      }}
+      date={currentDate}
+      onConfirm={e => {
+        setShowDatePicker(false);
+        setCurrentDate(formateDate(e.date));
+      }}
+      closeIcon=""
+      editIcon=""
+      calendarIcon=""
+    />
   );
 };
 
