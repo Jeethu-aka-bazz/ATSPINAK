@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import AddSchedules from '../../screens/AddSchedules';
 import Dashboard from '../../screens/Dashboard';
 import OverView from '../../screens/OverView';
 import Roles from '../../screens/Roles';
@@ -38,6 +39,15 @@ const Stacks = Stack => {
       <Stack.Screen name="Schedules">
         {screenprops => (
           <Schedules
+            {...screenprops}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="AddSchedules">
+        {screenprops => (
+          <AddSchedules
             {...screenprops}
             activeTab={activeTab}
             setActiveTab={setActiveTab}

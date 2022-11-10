@@ -1,17 +1,30 @@
 import React from 'react';
-import {Image, StyleSheet, Text, useWindowDimensions, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import done from '../../assets/images/done.png';
 import department from '../../assets/images/department.png';
 import font from '../../assets/fonts/font';
 import theme from '../../assets/themes/themes';
 import RowBox from '../common/RowBox';
 import {mobilebreakpoint} from '../../data/breakpoint';
+import {useNavigation} from '@react-navigation/native';
 
 const Role = ({role}) => {
   const windowWidth = useWindowDimensions().width;
+  const navigation = useNavigation();
   return (
     <>
-      <View style={[styles.rolecont(windowWidth)]}>
+      <TouchableOpacity
+        style={[styles.rolecont(windowWidth)]}
+        onPress={() => {
+          navigation.navigate('AddSchedules', {role: role});
+        }}>
         <View
           style={[
             styles.prioritycont(
@@ -43,7 +56,7 @@ const Role = ({role}) => {
           <Dates title="Closed Date" date={role.closedDate} />
         </RowBox>
         <Progress progress={role.progress} />
-      </View>
+      </TouchableOpacity>
     </>
   );
 };

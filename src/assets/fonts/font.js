@@ -60,6 +60,12 @@ const font = {
     fontWeight: '900',
     lineHeight: 27,
   },
+  fontstyle7: {
+    ...fontFamily,
+    fontSize: 20,
+    fontWeight: '400',
+    lineHeight: 27,
+  },
 };
 
 export default font;
