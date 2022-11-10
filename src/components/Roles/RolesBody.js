@@ -21,7 +21,6 @@ import addrole2 from '../../assets/images/addrole2.png';
 import PageBodyHeader from '../common/PageBodyHeader';
 import Buttons from '../common/Buttons';
 
-// const [formsubmit, setFormsubmit] = useState(false);
 const RolesBody = ({setShowAddRole}) => {
   const roles = store.getState().roles;
   const windowWidth = useWindowDimensions().width;
@@ -35,11 +34,11 @@ const RolesBody = ({setShowAddRole}) => {
           />
           <RowBox>
             <Buttons
-              title="Open roles - 32"
+              title={`Open roles - ${roles.length}`}
               active
               buttonstyle={[styles.buttonstyle]}
             />
-            <Buttons title="Closed roles - 188" />
+            <Buttons title="Closed roles - 0" />
           </RowBox>
           {windowWidth >= breakpoint && <OpenPosition />}
           <View style={[styles.rolecont]}>

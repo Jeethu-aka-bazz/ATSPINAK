@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 import Header from '../../components/header/MobileView';
-import Addrole from '../../components/AddRoles/AddRole';
-import RolesBody from '../../components/Roles/RolesBody';
+import Addrole from '../../components/addRoles/AddRole';
+import RolesBody from '../../components/roles/RolesBody';
 import {breakpoint} from '../../data/breakpoint';
 import AddJD from '../../components/addJD/AddJD';
 

@@ -9,14 +9,12 @@ import {
 } from 'react-native';
 import font from '../../assets/fonts/font';
 import theme from '../../assets/themes/themes';
-import AddRoleHeader from '../AddRoles/AddRoleHeader';
+import AddRoleHeader from '../addRoles/AddRoleHeader';
 import DesktopFormContainer from '../common/DesktopFormContainer';
 import AddJDBody from './AddJDBody';
 
 const AddJD = ({
   isDesktop,
-  active,
-  setActive,
   restoreStates,
   showCreateJD,
   setShowCreateJD,
@@ -34,7 +32,7 @@ const AddJD = ({
         />
         {isDesktop ? (
           <DesktopFormContainer>
-            <AddJDBody />
+            <AddJDBody isDesktop={isDesktop} />
           </DesktopFormContainer>
         ) : (
           <>

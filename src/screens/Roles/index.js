@@ -5,16 +5,10 @@ import MobileView from './MobileView';
 import TabDrawer from '../../components/common/TabDrawer';
 import {screens} from '../../data/screens';
 import {breakpoint} from '../../data/breakpoint';
-import {mounths} from '../../data/mounths';
 import {store} from '../../store/store';
+import {formateDate} from '../../data/formateDate';
 
 const Roles = ({activeTab, setActiveTab}) => {
-  const formateDate = date => {
-    return (
-      date.getDate() + ' ' + mounths[date.getMonth()] + ' ' + date.getFullYear()
-    );
-  };
-
   const restoreStates = () => {
     setRolename('');
     setNoofreq(1);
@@ -26,6 +20,8 @@ const Roles = ({activeTab, setActiveTab}) => {
     setNoofRound(0);
     setRequestedRoleType('Product Manager');
     setActive('Role details');
+    setCloseDate(formateDate(new Date()));
+    setOpenDate(formateDate(new Date()));
   };
 
   const saveRole = () => {
@@ -67,7 +63,7 @@ const Roles = ({activeTab, setActiveTab}) => {
   const [roundsDetails, setRoundsDetails] = useState([]);
   const [requestedRoleType, setRequestedRoleType] = useState('Product Manager');
   const [active, setActive] = useState('Role details');
-  const [showCreateJD, setShowCreateJD] = useState(false);
+  const [showCreateJD, setShowCreateJD] = useState(true);
 
   return (
     <>

@@ -2,8 +2,8 @@ import React from 'react';
 import {View} from 'react-native';
 import DesktopContainer from '../../components/common/DesktopContainer';
 import Header from '../../components/header/DesktopView';
-import Addrole from '../../components/AddRoles/AddRole';
-import RolesBody from '../../components/Roles/RolesBody';
+import Addrole from '../../components/addRoles/AddRole';
+import RolesBody from '../../components/roles/RolesBody';
 import AddJD from '../../components/addJD/AddJD';
 
 const DesktopView = props => {

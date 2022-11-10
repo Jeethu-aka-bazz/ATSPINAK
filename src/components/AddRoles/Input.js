@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 import font from '../../assets/fonts/font';
 import RowBox from '../common/RowBox';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import {formateDate} from '../../data/formateDate';
+
 const Input = ({
   label,
   placeholder,
@@ -27,6 +30,7 @@ const Input = ({
   type = 'text',
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   if (type === 'text') {
     return (
       <View style={{marginRight: 10}}>
@@ -52,21 +56,6 @@ const Input = ({
             </TouchableOpacity>
           )}
         </RowBox>
-      </View>
-    );
-  } else if (type === 'date') {
-    return (
-      <View style={{marginRight: '20%'}}>
-        <Text
-          style={[
-            {...font.fontstyle3, marginBottom: 6, color: '#252525'},
-            labelstyle,
-          ]}>
-          {label}
-        </Text>
-        <TouchableOpacity style={[styles.inputbox, boxstyle]}>
-          <Text style={[{...font.fontstyle4, color: '#252525'}]}>{value}</Text>
-        </TouchableOpacity>
       </View>
     );
   } else if (type === 'dropdown') {

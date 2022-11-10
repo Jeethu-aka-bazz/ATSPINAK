@@ -7,6 +7,7 @@ import Input from './Input';
 import dropdown2 from '../../assets/images/dropdown2.png';
 import {Slider} from '@miblanchard/react-native-slider';
 import RadioButton from '../common/RadioButton';
+import DatePicker from '../datePicker';
 
 const FormBody = ({
   setRolename,
@@ -48,6 +49,7 @@ const FormBody = ({
           style={{
             padding: isDesktop ? 56 : 0,
             marginTop: !isDesktop ? 16 : 0,
+            width: isDesktop ? '60%' : '100%',
           }}>
           <RoleName
             rolename={rolename}
@@ -84,21 +86,22 @@ const FormBody = ({
           style={{
             padding: isDesktop ? 56 : 0,
             marginTop: !isDesktop ? 16 : 0,
-            width: isDesktop ? 434 : '100%',
+            width: isDesktop ? '60%' : '100%',
           }}>
           <RowBox>
-            <Input
+            <DatePicker
               label="Open date"
-              type="date"
               value={openDate}
               boxstyle={{width: '130%'}}
+              onChange={setOpenDate}
             />
 
-            <Input
+            <DatePicker
               label="Closing date"
               type="date"
               value={closeDate}
               boxstyle={{width: '130%'}}
+              onChange={setCloseDate}
             />
           </RowBox>
           <Input
@@ -131,7 +134,6 @@ const FormBody = ({
             type="dropdown"
             dropdownlistItems={[1, 2, 3]}
           />
-          {/* <RoundDetails /> */}
         </View>
       </Container>
       <View style={[styles.hrline]} />
@@ -145,7 +147,7 @@ const FormBody = ({
           style={{
             padding: isDesktop ? 56 : 0,
             marginTop: !isDesktop ? 16 : 0,
-            width: isDesktop ? 434 : '100%',
+            width: isDesktop ? '60%' : '100%',
           }}>
           <Input
             label="Team required for"
@@ -204,43 +206,6 @@ const FormBody = ({
     </View>
   );
 };
-
-// const RoundDetails = () => {
-//   return (
-//     <RowBox style={{justifyContent: 'space-between'}}>
-//       <Input
-//         label="Hiring Manager"
-//         value={'-'}
-//         labelstyle={{marginTop: 24}}
-//         type="dropdown"
-//         // changeDropdown={sethiringmanager}
-//         dropdownlistItems={[
-//           'HighLeanne Simpson',
-//           'Saga Lindén',
-//           'Wan Gengxin',
-//           'Adam Smith',
-//         ]}
-//         // boxstyle={{width: '130%'}}
-//         contstyle={{width: '40%'}}
-//       />
-//       <Input
-//         label="Hiring Manager"
-//         value={'hiringmanager'}
-//         labelstyle={{marginTop: 24}}
-//         type="dropdown"
-//         // changeDropdown={sethiringmanager}
-//         dropdownlistItems={[
-//           'HighLeanne Simpson',
-//           'Saga Lindén',
-//           'Wan Gengxin',
-//           'Adam Smith',
-//         ]}
-//         // boxstyle={{width: '130%'}}
-//         contstyle={{width: '50%'}}
-//       />
-//     </RowBox>
-//   );
-// };
 
 const Container = ({children, isDesktop, style}) => {
   return <View style={[styles.container(isDesktop), style]}>{children}</View>;
@@ -407,7 +372,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   slider: {
-    width: 216,
+    width: '60%',
   },
   label: {
     ...font.fontstyle3,
