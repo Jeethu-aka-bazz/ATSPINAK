@@ -24,7 +24,7 @@ const Roles = ({activeTab, setActiveTab}) => {
     setPriority('High');
     sethiringmanager('Artem Sazonov');
     setNoofRound(0);
-    setRequestedRoleType('Tech Team');
+    setRequestedRoleType('Product Manager');
     setActive('Role details');
   };
 
@@ -65,7 +65,7 @@ const Roles = ({activeTab, setActiveTab}) => {
   const [hiringmanager, sethiringmanager] = useState('Artem Sazonov');
   const [noofRound, setNoofRound] = useState(0);
   const [roundsDetails, setRoundsDetails] = useState([]);
-  const [requestedRoleType, setRequestedRoleType] = useState('Tech Team');
+  const [requestedRoleType, setRequestedRoleType] = useState('Product Manager');
   const [active, setActive] = useState('Role details');
   const [showCreateJD, setShowCreateJD] = useState(false);
 
