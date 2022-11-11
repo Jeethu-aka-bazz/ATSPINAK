@@ -35,27 +35,49 @@ const Schedules = ({scheduleDetails, isDesktop}) => {
   const [toDate, setToDate] = useState(fromDate);
   return (
     <View style={[styles.schedulecard(isDesktop)]}>
-      <Text style={[styles.schedulecardhead]}>{`${name}, ${age}`}</Text>
-      <Text style={[styles.label]}>Profile matching</Text>
-      <RowBox style={{marginBottom: 8}}>
-        <View style={[styles.progressbarcont]}>
-          <View style={[styles.progressbar(profileMatch)]} />
-        </View>
-        <Text style={[styles.profilematchtext]}>{profileMatch}</Text>
-      </RowBox>
-      <Text style={[styles.label]}>Schedule</Text>
-      {fromDate === '' ? (
-        <DatePicker type="datetime" onChange={setFromDate} value={new Date()} />
-      ) : toDate === '' ? (
-        <RowBox>
-          <Text style={[styles.scheduledate(true)]}>{fromDate}</Text>
-          <DatePicker type="time" onChange={setToDate} value={new Date()} />
+      <View style={[styles.flexs]}>
+        <Text style={[styles.schedulecardhead]}>{`${name}, ${age}`}</Text>
+      </View>
+      <View style={[styles.flexs]}>
+        <Text style={[styles.label]}>Profile matching</Text>
+        <RowBox style={{marginBottom: 8}}>
+          <View style={[styles.progressbarcont]}>
+            <View style={[styles.progressbar(profileMatch)]} />
+          </View>
+          <Text style={[styles.profilematchtext]}>{profileMatch}</Text>
         </RowBox>
-      ) : (
-        <Text>{fromDate + '-' + toDate}</Text>
-      )}
-      <Text style={[styles.label]}>Interview by</Text>
-      <Text style={[styles.interviewer]}>{interViewer}</Text>
+      </View>
+      <View style={[styles.flexs]}>
+        <Text style={[styles.label]}>Schedule</Text>
+        {fromDate === '' ? (
+          <>
+            {Platform.OS === 'web' ? (
+              <DatePicker
+                type="dateW"
+                onChange={setFromDate}
+                value={new Date()}
+              />
+            ) : (
+              <DatePicker
+                type="datetime"
+                onChange={setFromDate}
+                value={new Date()}
+              />
+            )}
+          </>
+        ) : toDate === '' ? (
+          <RowBox>
+            <Text style={[styles.scheduledate(true)]}>{fromDate}</Text>
+            <DatePicker type="time" onChange={setToDate} value={new Date()} />
+          </RowBox>
+        ) : (
+          <Text>{fromDate + '-' + toDate}</Text>
+        )}
+      </View>
+      <View style={[styles.flexs]}>
+        <Text style={[styles.label]}>Interview by</Text>
+        <Text style={[styles.interviewer]}>{interViewer}</Text>
+      </View>
     </View>
   );
 };
@@ -63,6 +85,10 @@ const Schedules = ({scheduleDetails, isDesktop}) => {
 const styles = StyleSheet.create({
   root: {
     padding: 24,
+    paddingBottom: 55,
+  },
+  flexs: {
+    flex: 0.2,
   },
   triangle: color => ({
     borderTopWidth: 15,
@@ -90,7 +116,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 4,
     flexDirection: isDesktop ? 'row' : 'column',
-    alignItems: isDesktop ? 'center' : null,
+    alignItems: isDesktop ? 'center' : 'stretch',
+    justifyContent: 'space-around',
   }),
   schedulecardhead: {
     ...font.drawrttab,
@@ -106,7 +133,7 @@ const styles = StyleSheet.create({
   progressbar: percentage => ({
     width: percentage,
     backgroundColor: '#6DA9DD',
-    height: 15,
+    height: 14,
   }),
   profilematchtext: {
     ...font.fontstyle3,

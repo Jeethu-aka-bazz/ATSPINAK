@@ -44,6 +44,7 @@ const DatePicker = ({
         />
       ) : (
         <WebDatePicker
+          type={type}
           currentDate={new Date()}
           setCurrentDate={onChange}
           showDatePicker={showDatePicker}
