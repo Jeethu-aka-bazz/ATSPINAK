@@ -1,16 +1,25 @@
 import React from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {formateDate} from '../../data/formateDate';
+import {formateDateTime} from '../../data/formateDateTime';
+import {formateTime} from '../../data/formateTime';
 
 export {DateTimePickerModal};
 
-const MobileDatePicker = ({showDatePicker, onChange, setShowDatePicker}) => {
+const MobileDatePicker = ({
+  showDatePicker,
+  onChange,
+  setShowDatePicker,
+  mode,
+}) => {
   return (
     <DateTimePickerModal
       isVisible={showDatePicker}
-      mode="date"
+      mode={mode}
       onConfirm={e => {
-        onChange(formateDate(e));
+        mode === 'date' && onChange(formateDate(e));
+        mode === 'datetime' && onChange(formateDateTime(e));
+        mode === 'time' && onChange(formateTime(e));
         setShowDatePicker(false);
       }}
       onCancel={() => {
