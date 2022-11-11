@@ -100,7 +100,6 @@ const Input = ({
 
 const styles = StyleSheet.create({
   inputbox: {
-    //
     backgroundColor: '#F1F1F1',
     paddingVertical: 10,
     paddingHorizontal: 16,
@@ -111,7 +110,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   dropdown2img: {
-    //
     width: 20,
     height: 15,
   },

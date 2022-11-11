@@ -18,7 +18,6 @@ const presistConfig = {
   key: 'root',
   storage: AsyncStorage,
   whitelist: ['jd', 'roles'],
-  // blacklist: ['roles', 'jd'],
   blacklist: ['schedule'],
 };
 

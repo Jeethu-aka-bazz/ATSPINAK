@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text} from 'react-native';
+import {ScrollView, StyleSheet, Text} from 'react-native';
 import AddScheduleBody from '../../components/addschedules/AddScheduleBody';
 import Header from '../../components/addschedules/Header';
 import DesktopContainer from '../../components/common/DesktopContainer';
@@ -11,7 +11,7 @@ const DesktopView = ({activeTab, setActiveTab, role}) => {
     <>
       <DesktopHeader activeTab={activeTab} setActiveTab={setActiveTab} />
       <DesktopContainer>
-        <ScrollView>
+        <ScrollView style={[styles.root]}>
           <Header role={role} />
           <AddScheduleBody />
         </ScrollView>
@@ -20,5 +20,12 @@ const DesktopView = ({activeTab, setActiveTab, role}) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  root: {
+    height: '100%',
+    backgroundColor: '#F3F9FD',
+  },
+});
 
 export default DesktopView;

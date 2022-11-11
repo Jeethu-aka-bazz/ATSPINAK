@@ -9,8 +9,6 @@ const DatePicker = ({
   label,
   labelstyle,
   boxstyle,
-  //   showDatePicker,
-  //   setShowDatePicker,
   type = 'date',
   value,
   onChange,

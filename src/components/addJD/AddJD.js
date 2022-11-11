@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     paddingVertical: 12,
     paddingHorizontal: 24,
-    // marginTop: 55,
   },
   footerbtn: {
     backgroundColor: theme.addrolebackground,

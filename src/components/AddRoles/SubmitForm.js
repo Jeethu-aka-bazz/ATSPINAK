@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingVertical: isDesktop ? '15%' : '45%',
     paddingHorizontal: isDesktop ? '6%' : '15%',
-    // width: '100%',
     flexDirection: isDesktop ? 'row' : 'column',
     flexWrap: 'wrap',
   }),
