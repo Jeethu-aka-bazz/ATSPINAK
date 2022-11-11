@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Image,
   Platform,
   StyleSheet,
   Text,
@@ -12,13 +13,24 @@ import {breakpoint} from '../../data/breakpoint';
 import {store} from '../../store/store';
 import RowBox from '../common/RowBox';
 import DatePicker from '../datePicker';
+import goBack from '../../assets/images/goBack.png';
+import {useNavigation} from '@react-navigation/native';
 
 const AddScheduleBody = () => {
   const windowWidth = useWindowDimensions().width;
   const isDesktop = windowWidth >= breakpoint;
   const schedules = store.getState().schedule;
+  const navigation = useNavigation();
   return (
     <View style={[styles.root]}>
+      <TouchableOpacity
+        style={{flexDirection: 'row', alignItems: 'center', marginBottom: 15}}
+        onPress={() => {
+          navigation.navigate('Roles');
+        }}>
+        <Image source={goBack} style={[styles.gobackimg]} />
+        <Text style={[styles.gobacktext]}>Back to Role</Text>
+      </TouchableOpacity>
       <Text numberOfLines={1} style={{...font.fontstyle7, color: '#202020'}}>
         {`Problem solving round ( ${schedules.length} Candidates available )`}
       </Text>
@@ -153,6 +165,15 @@ const styles = StyleSheet.create({
   interviewer: {
     ...font.fontstyle3,
     color: '#202020',
+  },
+  gobackimg: {
+    width: 27,
+    height: 15,
+  },
+  gobacktext: {
+    ...font.fontstyle3,
+    color: '#174D90',
+    marginLeft: 10,
   },
 });
 
